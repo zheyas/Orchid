@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}МедЦентр Орхидея{% endblock %}</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medical-purple': '#6366f1',
+                        'medical-blue': '#3b82f6',
+                        'medical-light': '#e0e7ff',
+                        'medical-dark': '#4338ca',
+                        'medical-cyan': '#06b6d4',
+                        'medical-pink': '#ec4899'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.6s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 font-sans antialiased relative overflow-x-hidden">
+    <!-- Global Background Effects -->
+    <div class="fixed inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/30 to-pink-900/20 pointer-events-none"></div>
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none">
+        <div class="absolute top-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 3s;"></div>
+        <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 6s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white/10 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl">М+</span>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">МедЦентр Орхидея</h1>
+                        <p class="text-sm text-blue-200 font-medium">Инновационная медицина</p>
+                    </div>
+                </div>
+
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#services" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Услуги
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#psychology"
+class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Психология
+                        <span class="absolute -bottom-1 left-0 w-0.5 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#doctors" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Врачи
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        О нас
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Контакты
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'users:login' %}" class="glass-effect text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30">
+                        Войти
+                    </a>
+                    <a href="{% url 'users:register' %}" class="btn-primary text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        Зарегистрироваться
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl">М+</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold">МедЦентр Орхидея</span>
+                            <p class="text-gray-400 text-sm">Инновационная медицина</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Современная поликлиника с передовыми технологиями и персонализированным подходом к каждому пациенту. Ваше здоровье — наш приоритет.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-medical-purple transition-colors cursor-pointer">
+                            <span class="text-lg">📱</span>
+                        </div>
+                        <div class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-medical-purple transition-colors cursor-pointer">
+                            <span class="text-lg">📧</span>
+                        </div>
+                        <div class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-medical-purple transition-colors cursor-pointer">
+                            <span class="text-lg">🌐</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+<h3 class="font-bold text-lg mb-6">Услуги</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Терапия</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Кардиология</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Неврология</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Психология</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Лабораторная диагностика</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Телемедицина</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Информация</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">О клинике</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Наши врачи</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Лицензии</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Отзывы пациентов</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Вакансии</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Новости</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Контакты</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-medical-purple">📞</span>
+                            <span>+7 (495) 123-45-67</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-medical-purple">✉️</span>
+                            <span>info@medcenter.ru</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-medical-purple mt-1">📍</span>
+                            <span>г. Москва, ул. Здоровья, д. 123</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-medical-purple">⏰</span>
+                            <span>24/7 без выходных</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2024 МедЦентр Орхидея. Все права защищены.
+                    </p>
+                    <div class="flex space-x-6 text-sm text-gray-400">
+                        <a href="#" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+                        <a href="#" class="hover:text-white transition-colors">Пользовательское соглашение</a>
+                        <a href="#" class="hover:text-white transition-colors">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_scripts %}
+    <script>
+        // Плавный скролл по якорям (на главной)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

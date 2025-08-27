@@ -1,0 +1,1074 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МедЦентр Орхидея | Современная поликлиника</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medical-purple': '#6366f1',
+                        'medical-blue': '#3b82f6',
+                        'medical-light': '#e0e7ff',
+                        'medical-dark': '#4338ca',
+                        'medical-cyan': '#06b6d4',
+                        'medical-pink': '#ec4899'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.6s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 font-sans antialiased relative overflow-x-hidden">
+    <!-- Global Background Effects -->
+    <div class="fixed inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/30 to-pink-900/20 pointer-events-none"></div>
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none">
+        <div class="absolute top-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 3s;"></div>
+        <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 6s;"></div>
+    </div>
+    <!-- Header -->
+    <header class="bg-white/10 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl">М+</span>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">МедЦентр Орхидея</h1>
+                        <p class="text-sm text-blue-200 font-medium">Инновационная медицина</p>
+                    </div>
+                </div>
+
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#services" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Услуги
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#psychology" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Психология
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#doctors" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Врачи
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        О нас
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                        Контакты
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-2 text-white font-semibold">
+                    </div>
+                    <button onclick="openLoginModal()" class="glass-effect text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30">
+                        Войти
+                    </button>
+                    <button type="button" onclick="location.href='{% url 'users:register' %}'"
+        class="btn-primary text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+    Зарегистрироваться
+</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative gradient-bg text-white py-24 overflow-hidden">
+        <div class="floating-shapes">
+            <div class="shape w-32 h-32 bg-white rounded-full"></div>
+            <div class="shape w-24 h-24 bg-white rounded-full"></div>
+            <div class="shape w-40 h-40 bg-white rounded-full"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-slide-up">
+                    <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm font-medium">Работаем 24/7</span>
+                    </div>
+
+                    <h2 class="text-6xl font-bold mb-6 leading-tight">
+                        Будущее медицины
+                        <span class="block text-gradient">уже здесь</span>
+                    </h2>
+
+                    <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                        Революционные технологии, персонализированный подход и забота мирового уровня для вашего здоровья и благополучия
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <button class="btn-primary text-white px-8 py-4 rounded-xl font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                            Записаться на прием
+                        </button>
+                        <button class="glass-effect text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300">
+                            Виртуальный тур
+                        </button>
+                    </div>
+
+                    <div class="flex items-center space-x-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">15+</div>
+                            <div class="text-blue-200 text-sm">лет опыта</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">50+</div>
+                            <div class="text-blue-200 text-sm">специалистов</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">24/7</div>
+                            <div class="text-blue-200 text-sm">поддержка</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative animate-float">
+                    <div class="glass-effect rounded-3xl p-8 shadow-2xl">
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm animate-glow">
+                                <span class="text-6xl">🏥</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Инновационный центр</h3>
+                            <p class="text-blue-100 mb-6">Современное оборудование и передовые методы лечения</p>
+
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div class="bg-white/10 rounded-xl p-3">
+                                    <div class="font-semibold">AI-диагностика</div>
+                                    <div class="text-blue-200">Точность 99.7%</div>
+                                </div>
+                                <div class="bg-white/10 rounded-xl p-3">
+                                    <div class="font-semibold">Телемедицина</div>
+                                    <div class="text-blue-200">Онлайн 24/7</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="py-20 bg-white/5 backdrop-blur-sm relative border-y border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Быстрые действия</h2>
+                <p class="text-xl text-blue-200">Получите медицинскую помощь в несколько кликов</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 p-8 rounded-3xl card-hover cursor-pointer border border-purple-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">📅</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Онлайн запись</h3>
+                    <p class="text-gray-600 mb-4">Запишитесь к любому специалисту через интернет</p>
+                    <div class="text-medical-purple font-semibold text-sm">Доступно 24/7 →</div>
+                </div>
+
+                <div class="group bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 p-8 rounded-3xl card-hover cursor-pointer border border-blue-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">🩺</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Результаты анализов</h3>
+                    <p class="text-gray-600 mb-4">Получите результаты онлайн с расшифровкой</p>
+                    <div class="text-medical-blue font-semibold text-sm">Готово за 2 часа →</div>
+                </div>
+
+                <div class="group bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 p-8 rounded-3xl card-hover cursor-pointer border border-purple-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">💊</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Аптека</h3>
+                    <p class="text-gray-600 mb-4">Заказ лекарств с доставкой на дом</p>
+                    <div class="text-medical-pink font-semibold text-sm">Доставка за 1 час →</div>
+                </div>
+
+                <div class="group bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 p-8 rounded-3xl card-hover cursor-pointer border border-red-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">🚑</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Скорая помощь</h3>
+                    <p class="text-gray-600 mb-4">Экстренный вызов врача на дом</p>
+                    <div class="text-red-500 font-semibold text-sm">Приедем за 15 мин →</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative overflow-hidden section-enter">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-transparent to-cyan-400/20"></div>
+
+        <!-- Floating Orbs -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-400/25 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+
+        <!-- Geometric Shapes -->
+        <div class="absolute top-32 right-20 w-20 h-20 border border-white/20 rotate-45 animate-spin" style="animation-duration: 20s;"></div>
+        <div class="absolute bottom-32 left-20 w-16 h-16 border border-purple-300/30 rotate-12 animate-bounce" style="animation-duration: 3s;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
+                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                    <span class="text-white font-medium">Наши услуги</span>
+                </div>
+                <h2 class="text-5xl font-bold text-white mb-6">Полный спектр медицинских услуг</h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">Современные технологии и персонализированный подход для заботы о вашем здоровье</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="glass-effect rounded-3xl p-10 card-hover shadow-2xl border border-white/30 backdrop-blur-xl bg-white/10 hover:bg-white/20 transition-all duration-500">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-blue-400 rounded-3xl flex items-center justify-center mb-8 shadow-xl backdrop-blur-sm">
+                        <span class="text-white text-4xl">👨‍⚕️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Терапия и диагностика</h3>
+                    <p class="text-blue-100 mb-6 leading-relaxed">Комплексная диагностика с использованием AI-технологий и персонализированные программы лечения</p>
+
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-purple-300 rounded-full animate-pulse"></div>
+                            <span class="text-blue-100">AI-диагностика заболеваний</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-purple-300 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                            <span class="text-blue-100">Персональные программы</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-purple-300 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                            <span class="text-blue-100">Профилактические осмотры</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-purple-300 rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
+                            <span class="text-blue-100">Цифровые медкарты</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-gradient-to-r from-purple-400 to-blue-400 text-white py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-white/20">
+                        Записаться
+                    </button>
+                </div>
+
+                <div class="glass-effect rounded-3xl p-10 card-hover shadow-2xl border border-white/30 backdrop-blur-xl bg-white/10 hover:bg-white/20 transition-all duration-500">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-3xl flex items-center justify-center mb-8 shadow-xl backdrop-blur-sm">
+                        <span class="text-white text-4xl">🔬</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Лабораторная диагностика</h3>
+                    <p class="text-blue-100 mb-6 leading-relaxed">Современная лаборатория с роботизированными системами и экспресс-анализами</p>
+
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-cyan-300 rounded-full animate-pulse"></div>
+                            <span class="text-blue-100">Экспресс-анализы за 30 мин</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-cyan-300 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                            <span class="text-blue-100">Генетические исследования</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-cyan-300 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                            <span class="text-blue-100">Онкомаркеры и гормоны</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-cyan-300 rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
+                            <span class="text-blue-100">Забор анализов на дому</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-gradient-to-r from-blue-400 to-cyan-400 text-white py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-white/20">
+                        Записаться
+                    </button>
+                </div>
+
+                <div class="glass-effect rounded-3xl p-10 card-hover shadow-2xl border border-white/30 backdrop-blur-xl bg-white/10 hover:bg-white/20 transition-all duration-500">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl flex items-center justify-center mb-8 shadow-xl backdrop-blur-sm">
+                        <span class="text-white text-4xl">📱</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Телемедицина</h3>
+                    <p class="text-blue-100 mb-6 leading-relaxed">Консультации врачей онлайн с использованием VR-технологий и удаленного мониторинга</p>
+
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-pink-300 rounded-full animate-pulse"></div>
+                            <span class="text-blue-100">VR-консультации</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-pink-300 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                            <span class="text-blue-100">Удаленный мониторинг</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-pink-300 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                            <span class="text-blue-100">Цифровые рецепты</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-pink-300 rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
+                            <span class="text-blue-100">Мобильное приложение</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-gradient-to-r from-purple-400 to-pink-400 text-white py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-white/20">
+                        Записаться
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Psychology Section -->
+    <section id="psychology" class="py-24 psychology-gradient text-white relative overflow-hidden section-enter">
+        <div class="neuro-pattern absolute inset-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                    <span class="text-white font-medium">Психологическая помощь</span>
+                </div>
+                <h2 class="text-5xl font-bold mb-6">Забота о ментальном здоровье</h2>
+                <p class="text-xl text-pink-100 max-w-3xl mx-auto">Профессиональная психологическая поддержка с использованием современных методов терапии</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="glass-effect rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl">🧠</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Когнитивно-поведенческая терапия</h3>
+                                    <p class="text-pink-100">Эффективные методы работы с тревожностью, депрессией и стрессом</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-effect rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl">👥</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Семейная и парная терапия</h3>
+                                    <p class="text-pink-100">Работа с отношениями и семейными конфликтами</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-effect rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl">🎯</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Коучинг и развитие личности</h3>
+                                    <p class="text-pink-100">Достижение целей и раскрытие потенциала</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-effect rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl">🧘</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Mindfulness и медитация</h3>
+                                    <p class="text-pink-100">Техники осознанности для снижения стресса</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="glass-effect rounded-3xl p-8 shadow-2xl">
+                        <div class="text-center mb-8">
+                            <div class="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center animate-pulse">
+                                <span class="text-5xl">🌟</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Онлайн консультации</h3>
+                            <p class="text-pink-100 mb-6">Получите помощь психолога не выходя из дома</p>
+                        </div>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex justify-between items-center bg-white/10 rounded-xl p-4">
+                                <span class="font-medium">Первичная консультация</span>
+                                <span class="text-green-300 font-bold">Бесплатно</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-white/10 rounded-xl p-4">
+                                <span class="font-medium">Индивидуальная сессия</span>
+                                <span class="font-bold">3000 ₽</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-white/10 rounded-xl p-4">
+                                <span class="font-medium">Парная терапия</span>
+                                <span class="font-bold">4500 ₽</span>
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-white text-purple-600 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg">
+                            Записаться к психологу
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">⭐</span>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="15">0</div>
+                    <div class="text-gray-600 font-medium">лет опыта</div>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">👨‍⚕️</span>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="50">0</div>
+                    <div class="text-gray-600 font-medium">врачей-специалистов</div>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">❤️</span>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="10000">0</div>
+                    <div class="text-gray-600 font-medium">довольных пациентов</div>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white text-3xl">🕐</span>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-800 mb-2">24/7</div>
+                    <div class="text-gray-600 font-medium">работаем для вас</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 section-enter">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-medical-purple/10 rounded-full px-4 py-2 mb-6">
+                        <span class="w-2 h-2 bg-medical-purple rounded-full"></span>
+                        <span class="text-medical-purple font-medium">Свяжитесь с нами</span>
+                    </div>
+
+                    <h2 class="text-5xl font-bold text-gray-800 mb-6">Мы всегда на связи</h2>
+                    <p class="text-xl text-gray-600 mb-12 leading-relaxed">Получите профессиональную консультацию и запишитесь на прием в удобное время</p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-6 group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <span class="text-white text-2xl">📍</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Наш адрес</h3>
+                                <p class="text-gray-600">г. Москва, ул. Здоровья, д. 123</p>
+                                <p class="text-sm text-medical-purple font-medium">Рядом с метро "Медицинская"</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-6 group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <span class="text-white text-2xl">📞</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Телефон</h3>
+                                <p class="text-gray-600">+7 (495) 123-45-67</p>
+                                <p class="text-sm text-medical-blue font-medium">Круглосуточная поддержка</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-6 group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <span class="text-white text-2xl">✉️</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Email</h3>
+                                <p class="text-gray-600">info@medcenter.ru</p>
+                                <p class="text-sm text-medical-pink font-medium">Ответим в течение часа</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-6 group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <span class="text-white text-2xl">⏰</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Режим работы</h3>
+                                <p class="text-gray-600">Пн-Вс: 24/7</p>
+                                <p class="text-sm text-green-600 font-medium">Без выходных и праздников</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-10 shadow-2xl border border-gray-100" style="display: none;">
+                    <div class="text-center mb-8">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-medical-purple to-medical-blue rounded-full flex items-center justify-center shadow-lg">
+                            <span class="text-white text-3xl">📝</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Записаться на прием</h3>
+                        <p class="text-gray-600 mb-6">Выберите удобное время для консультации</p>
+                    </div>
+
+                    <form id="appointmentForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ваше имя</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Введите ваше имя">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Телефон</label>
+                            <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="+7 (___) ___-__-__">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Специалист</label>
+                            <select required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300">
+                                <option value="">Выберите специалиста</option>
+                                <option value="therapist">Терапевт</option>
+                                <option value="cardiologist">Кардиолог</option>
+                                <option value="neurologist">Невролог</option>
+                                <option value="psychologist">Психолог</option>
+                                <option value="dermatologist">Дерматолог</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Дата</label>
+                                <input type="date" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Время</label>
+                                <select required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300">
+                                    <option value="">Выберите время</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Комментарий (необязательно)</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300 resize-none" rows="3" placeholder="Опишите ваши симптомы или вопросы"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full btn-primary text-white py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                            Записаться на прием
+                        </button>
+
+                        <p class="text-xs text-gray-500 text-center">
+                            Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl">М+</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold">МедЦентр Орхидея</span>
+                            <p class="text-gray-400 text-sm">Инновационная медицина</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Современная поликлиника с передовыми технологиями и персонализированным подходом к каждому пациенту. Ваше здоровье - наш приоритет.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-medical-purple transition-colors cursor-pointer">
+                            <span class="text-lg">📱</span>
+                        </div>
+                        <div class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-medical-purple transition-colors cursor-pointer">
+                            <span class="text-lg">📧</span>
+                        </div>
+                        <div class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-medical-purple transition-colors cursor-pointer">
+                            <span class="text-lg">🌐</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Услуги</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Терапия</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Кардиология</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Неврология</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Психология</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Лабораторная диагностика</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Телемедицина</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Информация</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">О клинике</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Наши врачи</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Лицензии</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Отзывы пациентов</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Вакансии</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Новости</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Контакты</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-medical-purple">📞</span>
+                            <span>+7 (495) 123-45-67</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-medical-purple">✉️</span>
+                            <span>info@medcenter.ru</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-medical-purple mt-1">📍</span>
+                            <span>г. Москва, ул. Здоровья, д. 123</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-medical-purple">⏰</span>
+                            <span>24/7 без выходных</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2024 МедЦентр Орхидея. Все права защищены.
+                    </p>
+                    <div class="flex space-x-6 text-sm text-gray-400">
+                        <a href="#" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+                        <a href="#" class="hover:text-white transition-colors">Пользовательское соглашение</a>
+                        <a href="#" class="hover:text-white transition-colors">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 transition-all duration-300" id="loginModalContent">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 mx-auto mb-6 gradient-bg rounded-full flex items-center justify-center shadow-lg">
+                    <span class="text-white text-3xl">👤</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Вход в личный кабинет</h2>
+                <p class="text-gray-600">Войдите, чтобы управлять записями и просматривать результаты</p>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Телефон или Email</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Введите телефон или email">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Пароль</label>
+                    <div class="relative">
+                        <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Введите пароль">
+                        <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="w-4 h-4 text-medical-purple border-gray-300 rounded focus:ring-medical-purple">
+                        <span class="ml-2 text-sm text-gray-600">Запомнить меня</span>
+                    </label>
+                    <a href="#" class="text-sm text-medical-purple hover:text-medical-dark font-medium">Забыли пароль?</a>
+                </div>
+
+                <button type="button" onclick="location.href='{% url 'users:login' %}'"
+        class="w-full btn-primary text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+    Войти
+</button>
+
+                <div class="text-center">
+                    <p class="text-gray-600 text-sm">Нет аккаунта?
+                        <button type="button" onclick="showRegisterForm()" class="text-medical-purple hover:text-medical-dark font-medium">Зарегистрироваться</button>
+                    </p>
+                </div>
+            </form>
+
+            <!-- Registration Form (hidden by default) -->
+            <form id="registerForm" class="space-y-6 hidden">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Имя</label>
+                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Ваше имя">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Фамилия</label>
+                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Ваша фамилия">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Телефон</label>
+                    <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="+7 (___) ___-__-__">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="your@email.com">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Пароль</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Минимум 6 символов">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Подтвердите пароль</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-purple focus:border-transparent transition-all duration-300" placeholder="Повторите пароль">
+                </div>
+
+                <div class="flex items-start">
+                    <input type="checkbox" required class="w-4 h-4 text-medical-purple border-gray-300 rounded focus:ring-medical-purple mt-1">
+                    <span class="ml-2 text-sm text-gray-600">Я согласен с <a href="#" class="text-medical-purple hover:text-medical-dark">условиями использования</a> и <a href="#" class="text-medical-purple hover:text-medical-dark">политикой конфиденциальности</a></span>
+                </div>
+
+                <button type="submit" class="w-full btn-primary text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                    Зарегистрироваться
+                </button>
+
+                <div class="text-center">
+                    <p class="text-gray-600 text-sm">Уже есть аккаунт?
+                        <button type="button" onclick="showLoginForm()" class="text-medical-purple hover:text-medical-dark font-medium">Войти</button>
+                    </p>
+                </div>
+            </form>
+
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200">
+                <span class="text-gray-600">✕</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show success message
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+
+            button.textContent = 'Отправляем...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert('✅ Спасибо за заявку! Мы свяжемся с вами в течение 15 минут для подтверждения записи.');
+                this.reset();
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 1500);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with animation
+        document.querySelectorAll('.section-enter').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Phone number formatting
+        const phoneInput = document.querySelector('input[type="tel"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value[0] === '8') value = '7' + value.slice(1);
+                    if (value[0] === '7') {
+                        value = value.slice(1);
+                    }
+
+                    let formatted = '+7';
+                    if (value.length > 0) formatted += ' (' + value.slice(0, 3);
+                    if (value.length > 3) formatted += ') ' + value.slice(3, 6);
+                    if (value.length > 6) formatted += '-' + value.slice(6, 8);
+                    if (value.length > 8) formatted += '-' + value.slice(8, 10);
+
+                    e.target.value = formatted;
+                }
+            });
+        }
+
+        // Set minimum date for appointment
+        const dateInput = document.querySelector('input[type="date"]');
+        if (dateInput) {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+
+        // Add loading states to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.type !== 'submit') {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                }
+            });
+        });
+
+        // Login Modal Functions
+        function openLoginModal() {
+            const modal = document.getElementById('loginModal');
+            const content = document.getElementById('loginModalContent');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.style.transform = 'scale(1)';
+            }, 10);
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById('loginModal');
+            const content = document.getElementById('loginModalContent');
+            content.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        function showRegisterForm() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const title = document.querySelector('#loginModal h2');
+            const subtitle = document.querySelector('#loginModal p');
+
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            title.textContent = 'Регистрация';
+            subtitle.textContent = 'Создайте аккаунт для доступа к личному кабинету';
+        }
+
+        function showLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const title = document.querySelector('#loginModal h2');
+            const subtitle = document.querySelector('#loginModal p');
+
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            title.textContent = 'Вход в личный кабинет';
+            subtitle.textContent = 'Войдите, чтобы управлять записями и просматривать результаты';
+        }
+
+        // Close modal on outside click
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLoginModal();
+            }
+        });
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+
+            button.textContent = 'Входим...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert('✅ Добро пожаловать! Вы успешно вошли в личный кабинет.');
+                closeLoginModal();
+                this.reset();
+                button.textContent = originalText;
+                button.disabled = false;
+
+                // Update header to show user is logged in
+                updateHeaderForLoggedInUser();
+            }, 1500);
+        });
+
+        // Register form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const password = this.querySelector('input[type="password"]').value;
+            const confirmPassword = this.querySelectorAll('input[type="password"]')[1].value;
+
+            if (password !== confirmPassword) {
+                alert('❌ Пароли не совпадают!');
+                return;
+            }
+
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+
+            button.textContent = 'Регистрируем...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert('✅ Регистрация успешна! Добро пожаловать в МедЦентр Орхидея!');
+                closeLoginModal();
+                this.reset();
+                button.textContent = originalText;
+                button.disabled = false;
+
+                // Update header to show user is logged in
+                updateHeaderForLoggedInUser();
+            }, 1500);
+        });
+
+        // Update header for logged in user
+        function updateHeaderForLoggedInUser() {
+            const loginButton = document.querySelector('button[onclick="openLoginModal()"]');
+            loginButton.innerHTML = '👤 Личный кабинет';
+            loginButton.onclick = function() {
+                alert('🏥 Добро пожаловать в личный кабинет!\n\n📅 Мои записи\n📋 Результаты анализов\n💊 История лечения\n⚙️ Настройки профиля');
+            };
+        }
+
+        // Password visibility toggle
+        document.querySelectorAll('button[type="button"]').forEach(button => {
+            if (button.textContent === '👁️') {
+                button.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        this.textContent = '🙈';
+                    } else {
+                        input.type = 'password';
+                        this.textContent = '👁️';
+                    }
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975b61c2e3d52a7a',t:'MTc1NjI5NTc0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

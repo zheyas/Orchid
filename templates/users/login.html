@@ -1,0 +1,51 @@
+{% extends 'base/index.html' %}
+{% block title %}Вход — МедЦентр Орхидея{% endblock %}
+
+{% block content %}
+<section class="py-16 sm:py-20">
+  <div class="max-w-md mx-4 sm:mx-auto bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20">
+    <h1 class="text-2xl font-bold text-white mb-6">Вход в личный кабинет</h1>
+
+    {% if form.non_field_errors %}
+      <div class="text-sm px-4 py-3 rounded-lg bg-red-500/20 text-red-100 mb-4">
+        {% for e in form.non_field_errors %}{{ e }}{% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+
+      {% if form.identifier %}
+        <div>
+          <label class="block text-white/90 mb-1" for="{{ form.identifier.id_for_label }}">Телефон или Email</label>
+          {{ form.identifier }}
+          {% for e in form.identifier.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+      {% else %}
+        <div>
+          <label class="block text-white/90 mb-1" for="{{ form.username.id_for_label }}">Телефон или Email</label>
+          {{ form.username }}
+          {% for e in form.username.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+      {% endif %}
+
+      <div>
+        <label class="block text-white/90 mb-1" for="{{ form.password.id_for_label }}">Пароль</label>
+        {{ form.password }}
+        {% for e in form.password.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+      </div>
+
+      {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+
+      <button type="submit" class="w-full btn-primary text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+        Войти
+      </button>
+
+      <p class="text-white/80 text-sm text-center mt-3">
+        Нет аккаунта?
+        <a class="text-medical-light underline" href="{% url 'users:register' %}">Зарегистрироваться</a>
+      </p>
+    </form>
+  </div>
+</section>
+{% endblock %}

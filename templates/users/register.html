@@ -1,0 +1,75 @@
+{% extends 'base/index.html' %}
+{% block title %}Регистрация — МедЦентр Орхидея{% endblock %}
+{% block content %}
+<section class="py-16 sm:py-20">
+<div class="max-w-md mx-auto mt-12 bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20">
+    <h1 class="text-2xl font-bold text-white mb-2">Создать аккаунт</h1>
+    <p class="text-white/70 text-sm mb-6">Укажите телефон или email (достаточно одного).</p>
+
+    {% if messages %}
+        <div class="space-y-2 mb-4">
+            {% for message in messages %}
+                <div class="text-sm px-4 py-3 rounded-lg {% if message.tags == 'success' %}bg-green-500/20 text-green-100{% else
+%}bg-red-500/20 text-red-100{% endif %}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+        <div class="text-sm px-4 py-3 rounded-lg bg-red-500/20 text-red-100 mb-4">
+            {% for e in form.non_field_errors %}{{ e }}{% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+            <label class="block text-white/90 mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+            {{ form.first_name }}
+            {% for e in form.first_name.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+
+        <div>
+            <label class="block text-white/90 mb-1" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+            {{ form.last_name }}
+            {% for e in form.last_name.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+
+        <div>
+            <label class="block text-white/90 mb-1" for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {% for e in form.email.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+
+        <div>
+            <label class="block text-white/90 mb-1" for="{{ form.phone.id_for_label }}">Телефон</label>
+            {{ form.phone }}
+            {% for e in form.phone.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+
+        <div>
+            <label class="block text-white/90 mb-1" for="{{ form.password1.id_for_label }}">Пароль</label>
+            {{ form.password1 }}
+            {% for e in form.password1.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+
+        <div>
+            <label class="block text-white/90 mb-1" for="{{ form.password2.id_for_label }}">Подтвердите пароль</label>
+            {{ form.password2 }}
+            {% for e in form.password2.errors %}<p class="text-red-200 text-sm mt-1">{{ e }}</p>{% endfor %}
+        </div>
+
+        <button type="submit" class="w-full btn-primary text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+            Зарегистрироваться
+        </button>
+
+        <p class="text-white/80 text-sm text-center mt-3">
+            Уже есть аккаунт?
+            <a class="text-medical-light underline" href="{% url 'users:login' %}">Войти</a>
+        </p>
+    </form>
+</div>
+</section>
+
+    {% endblock %}
