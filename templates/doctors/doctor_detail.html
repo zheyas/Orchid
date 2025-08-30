@@ -1,0 +1,35 @@
+{% extends "base/index.html" %}
+{% load static %}
+{% block title %}{{ doctor.full_name }} - МедЦентр Орхидея{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 py-16 text-white">
+    <div class="flex flex-col md:flex-row gap-12">
+        <div class="md:w-1/3 flex justify-center">
+            <img src="{{ doctor.photo.url }}" alt="{{ doctor.full_name }}" class="rounded-xl w-64 h-64 object-cover shadow-lg"
+                 {% if not doctor.photo %}src="{% static 'images/default_doctor.jpg' %}"{% endif %}>
+        </div>
+        <div class="md:w-2/3">
+            <h2 class="text-4xl font-bold mb-4">{{ doctor.last_name }} {{ doctor.first_name }} {{ doctor.patronymic }}</h2>
+            <p class="text-medical-blue font-semibold text-lg mb-4">{{ doctor.qualification }}</p>
+
+            <div class="space-y-2 mb-6">
+                <p><span class="font-semibold text-medical-purple">Опыт:</span> {{ doctor.experience_years }} лет</p>
+                <p><span class="font-semibold text-medical-purple">Образование:</span> {{ doctor.education }}</p>
+                <p><span class="font-semibold text-medical-purple">Должность:</span> {{ doctor.position }}</p>
+                <p><span class="font-semibold text-medical-purple">Место работы:</span> {{ doctor.place_of_work }}</p>
+                <p><span class="font-semibold text-medical-purple">Специализации:</span> {{ doctor.specializations }}</p>
+                <p><span class="font-semibold text-medical-purple">Сертификаты и лицензии:</span> {{ doctor.certificates }}</p>
+                <p><span class="font-semibold text-medical-purple">Достижения:</span> {{ doctor.achievements }}</p>
+                <p><span class="font-semibold text-medical-purple">Стоимость консультации:</span> {{ doctor.consultation_price }} ₽</p>
+            </div>
+
+            <p class="text-gray-300 mb-6">{{ doctor.bio }}</p>
+
+            <a href="#" class="mt-6 inline-block bg-medical-purple hover:bg-medical-blue text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-300">
+                Записаться на приём
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base/index.html" %}
+{% block title %}Врачи - МедЦентр Орхидея{% endblock %}
+{% load static %}
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 py-16 text-white">
+    <h1 class="text-4xl font-bold mb-12 text-center text-medical-purple">Наши Врачи</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        {% for doctor in doctors %}
+        <div class="bg-white/10 backdrop-blur-xl rounded-2xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="w-40 h-40 mb-4 rounded-full overflow-hidden border-4 border-medical-purple">
+                {% if doctor.photo %}
+                    <img src="{{ doctor.photo.url }}" alt="{{ doctor.first_name }} {{ doctor.last_name }}" class="w-full h-full object-cover">
+                {% else %}
+                    <img src="{% static 'images/default_doctor.jpg' %}" alt="Нет фото" class="w-full h-full object-cover">
+                {% endif %}
+            </div>
+            <h2 class="text-2xl font-semibold mb-2 text-white">{{ doctor.last_name }} {{ doctor.first_name }}</h2>
+            <p class="text-medical-blue font-medium mb-4">{{ doctor.qualification }}</p>
+            <a href="{% url 'doctors:detail' doctor.id %}" class="mt-auto inline-block bg-medical-purple hover:bg-medical-blue text-white px-5 py-2 rounded-xl font-semibold shadow-md transition-all duration-300">
+                Подробнее
+            </a>
+        </div>
+        {% empty %}
+        <p class="col-span-3 text-center text-gray-300">Врачи пока не добавлены.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
