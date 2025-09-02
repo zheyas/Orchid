@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'users',
     'doctors',
 ]
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/users/profile/'
 LOGOUT_REDIRECT_URL = 'home'
 
 MIDDLEWARE = [

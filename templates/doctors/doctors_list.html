@@ -1,9 +1,14 @@
 {% extends "base/index.html" %}
-{% block title %}Врачи - МедЦентр Орхидея{% endblock %}
+{% block title %}
+    {% if specialization %}{{ specialization }} — {% endif %}Врачи - МедЦентр Орхидея
+{% endblock %}
 {% load static %}
+
 {% block content %}
 <section class="max-w-7xl mx-auto px-4 py-16 text-white">
-    <h1 class="text-4xl font-bold mb-12 text-center text-medical-purple">Наши Врачи</h1>
+    <h1 class="text-4xl font-bold mb-12 text-center text-medical-purple">
+        {% if specialization %}{{ specialization }}{% else %}Наши Врачи{% endif %}
+    </h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {% for doctor in doctors %}
@@ -16,7 +21,7 @@
                 {% endif %}
             </div>
             <h2 class="text-2xl font-semibold mb-2 text-white">{{ doctor.last_name }} {{ doctor.first_name }}</h2>
-            <p class="text-medical-blue font-medium mb-4">{{ doctor.qualification }}</p>
+<p class="text-medical-blue font-medium mb-4">{{ doctor.display_qualification }}</p>
             <a href="{% url 'doctors:detail' doctor.id %}" class="mt-auto inline-block bg-medical-purple hover:bg-medical-blue text-white px-5 py-2 rounded-xl font-semibold shadow-md transition-all duration-300">
                 Подробнее
             </a>

@@ -1,3 +1,4 @@
+#users/forms.py
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -75,3 +76,28 @@ class EmailOrPhoneAuthenticationForm(AuthenticationForm):
         label='Телефон или Email',
         widget=forms.TextInput(attrs={'autofocus': True, 'placeholder': 'Телефон или Email'})
     )
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'phone')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Фамилия'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Телефон'}),
+        }
+
+    def clean_phone(self):
+        phone_raw = self.cleaned_data.get('phone')
+        from .models import normalize_phone
+        phone = normalize_phone(phone_raw)
+        if phone and User.objects.exclude(pk=self.instance.pk).filter(phone=phone).exists():
+            raise forms.ValidationError('Пользователь с таким телефоном уже существует.')
+        return phone
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email and User.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+            raise forms.ValidationError('Пользователь с таким email уже существует.')
+        return email

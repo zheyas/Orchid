@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medical-purple': '#6366f1',
+                        'medical-blue': '#3b82f6',
+                        'medical-light': '#e0e7ff',
+                        'medical-dark': '#4338ca',
+                        'medical-cyan': '#06b6d4',
+                        'medical-pink': '#ec4899'
+                    },
+                    fontFamily: { 'sans': ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 font-sans antialiased relative overflow-x-hidden">
+
+    <!-- Фоновые эффекты -->
+    <div class="fixed inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/30 to-pink-900/20 pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="bg-white/10 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Лого -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl">М+</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">МедЦентр Орхидея</h1>
+                        <p class="text-sm text-blue-200 font-medium">Инновационная медицина</p>
+                    </div>
+                </div>
+
+                <!-- Меню -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="/#services" class="text-white hover:text-purple-300 transition">Услуги</a>
+                    <a href="/doctors" class="text-white hover:text-purple-300 transition">Врачи</a>
+                    <a href="/#about" class="text-white hover:text-purple-300 transition">О нас</a>
+                    <a href="/#contact" class="text-white hover:text-purple-300 transition">Контакты</a>
+                </nav>
+
+                <!-- Кнопки -->
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'users:profile_edit' %}" class="glass-effect text-white px-4 py-2 rounded-xl font-semibold hover:bg-white/20 transition">
+                        Редактировать
+                    </a>
+                    <a href="{% url 'users:logout_confirm' %}" class="bg-red-500 px-4 py-2 rounded-xl font-semibold hover:bg-red-600 transition">
+                        Выйти
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Контент -->
+    <main class="max-w-5xl mx-auto p-6">
+        <!-- Приветствие -->
+        <h2 class="text-2xl font-bold mb-2 text-white">
+            Здравствуйте, {{ request.user.first_name }} {{ request.user.last_name }}!
+        </h2>
+        <p class="text-gray-300 mb-8">Добро пожаловать в ваш личный кабинет.</p>
+
+        <!-- Данные пользователя -->
+        <div class="bg-white/10 backdrop-blur-xl rounded-2xl shadow p-6 mb-8">
+            <h3 class="text-lg font-semibold text-white mb-4">Ваши данные</h3>
+            <ul class="space-y-2 text-gray-200">
+                <li><b>Email:</b> {{ request.user.email }}</li>
+                <li><b>Телефон:</b> {{ request.user.phone }}</li>
+                <li><b>Дата рождения:</b> {{ request.user.birth_date|default:"—" }}</li>
+            </ul>
+        </div>
+
+        <!-- Статистика -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-medical-purple text-white rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold">{{ stats.completed_appointments }}</p>
+                <p class="text-sm">Завершённых приёмов</p>
+            </div>
+            <div class="bg-medical-blue text-white rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold">{{ stats.analyses }}</p>
+                <p class="text-sm">Анализы</p>
+            </div>
+            <div class="bg-green-500 text-white rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold">{{ stats.upcoming }}</p>
+                <p class="text-sm">Ближайших приёмов</p>
+            </div>
+            <div class="bg-yellow-500 text-white rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold">{{ stats.prescriptions }}</p>
+                <p class="text-sm">Назначения</p>
+            </div>
+        </div>
+
+        <!-- Кнопки действий -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a href="#" class="block bg-medical-purple hover:bg-medical-blue text-white px-6 py-6 rounded-xl font-semibold shadow-md text-center transition">
+               Ваши анализы
+            </a>
+            <a href="#" class="block bg-medical-purple hover:bg-medical-blue text-white px-6 py-6 rounded-xl font-semibold shadow-md text-center transition">
+               Ваши приёмы
+            </a>
+            <a href="#" class="block bg-medical-purple hover:bg-medical-blue text-white px-6 py-6 rounded-xl font-semibold shadow-md text-center transition col-span-full">
+               Записаться на приём
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400 text-sm">&copy; 2024 МедЦентр Орхидея. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
