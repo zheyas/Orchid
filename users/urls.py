@@ -1,13 +1,17 @@
-# users/urls.py
 from django.urls import path
-from django.contrib.auth import views as auth_views
 from . import views
-from .forms import EmailOrPhoneAuthenticationForm
 from .forms import LoginForm
+from django.contrib.auth import views as auth_views
+
 app_name = 'users'
 
 urlpatterns = [
     path('register/', views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html', authentication_form=LoginForm), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(
+        template_name='users/login.html',
+        authentication_form=LoginForm
+    ), name='login'),
+    path('logout/', views.logout_confirm, name='logout_confirm'),  # <-- теперь кастомная страница
+    path('profile/', views.profile, name='profile'),
+    path('profile_edit/', views.profile_edit, name='profile_edit'),
 ]

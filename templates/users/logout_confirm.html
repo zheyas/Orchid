@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подтвердите выход</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+    <div class="bg-gray-800 p-10 rounded-2xl shadow-lg text-center">
+        <h2 class="text-2xl font-bold mb-4">Вы уверены, что хотите выйти?</h2>
+        <form method="POST" class="space-x-4">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-xl font-semibold transition">Выйти</button>
+            <a href="{% url 'users:profile' %}" class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-xl font-semibold transition">Отмена</a>
+        </form>
+    </div>
+</body>
+</html>

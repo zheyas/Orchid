@@ -68,7 +68,7 @@
                         Психология
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="/doctors" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
+                    <a href="doctors" class="text-white hover:text-purple-300 transition-all duration-300 font-medium relative group">
                         Врачи
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-300 transition-all duration-300 group-hover:w-full"></span>
                     </a>
@@ -85,7 +85,7 @@
                 <div class="flex items-center space-x-4">
                     <div class="hidden md:flex items-center space-x-2 text-white font-semibold">
                     </div>
-                    <button onclick="location.href='{% url 'users:login' %}'" class="glass-effect text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30">
+                    <button onclick="openLoginModal()" class="glass-effect text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30">
                         Войти
                     </button>
                     <button type="button" onclick="location.href='{% url 'users:register' %}'"
